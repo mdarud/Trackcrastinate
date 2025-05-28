@@ -1,0 +1,22 @@
+Icon Design for Trackcrastinate
+
+The icon represents the concept of time tracking with a Severance-inspired aesthetic:
+
+1. Base Design:
+   - Circular shape with a gradient background from Lumon green (#4A9D7C) to muted blue (#607D8B)
+   - White clock face with subtle gray border
+   - Minimalist hour markers in dark gray (#343A40)
+
+2. Distinctive Elements:
+   - Clock hands positioned to form a winking face:
+     - Hour and minute hands (in Lumon green) positioned as eyes
+     - Second hand (in bright red #E63946) curved to form a smile
+   - Subtle dotted line across the middle (representing the "severance" concept)
+   - Clean, corporate aesthetic with playful elements
+
+3. Required Sizes:
+   - icon16.png: 16x16 pixels
+   - icon48.png: 48x48 pixels
+   - icon128.png: 128x128 pixels
+
+This design communicates the app's purpose (tracking time) while incorporating the Severance aesthetic of clean corporate design with slightly unsettling elements. The winking face adds the playful element requested, while maintaining an elegant overall appearance.

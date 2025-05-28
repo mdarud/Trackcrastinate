@@ -1,0 +1,32 @@
+{
+  "name": "trackcrastinate",
+  "version": "1.0.0",
+  "description": "Trackcrastinate - Track your procrastination with style. Reclaim your time with a sense of humor.",
+  "private": true,
+  "workspaces": [
+    "extension",
+    "dashboard"
+  ],
+  "scripts": {
+    "dev:dashboard": "cd dashboard && npm run dev",
+    "build:dashboard": "cd dashboard && npm run build",
+    "build:extension": "cd extension && npm run build",
+    "build": "npm run build:dashboard && npm run build:extension",
+    "lint": "npm run lint:extension",
+    "lint:extension": "cd extension && npm run lint",
+    "zip:extension": "cd extension && npm run zip"
+  },
+  "keywords": [
+    "productivity",
+    "time-tracking",
+    "chrome-extension",
+    "dashboard",
+    "severance",
+    "procrastination"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

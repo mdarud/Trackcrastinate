@@ -1,0 +1,324 @@
+/* Math Challenge - Trackcrastinate */
+
+:root {
+  --primary-color: #1A535C;
+  --secondary-color: #4A9D7C;
+  --accent-color: #E63946;
+  --light-color: #F7FFF7;
+  --dark-color: #2B2D42;
+  --success-color: #4A9D7C;
+  --error-color: #E63946;
+  --border-radius: 6px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--secondary-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.game-container {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 25px;
+  margin-bottom: 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.difficulty-indicator {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: rgba(26, 83, 92, 0.1);
+  border-radius: var(--border-radius);
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background-color: var(--secondary-color);
+  transition: width 0.3s ease;
+}
+
+.problem-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.problem {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: var(--border-radius);
+  min-width: 200px;
+  text-align: center;
+}
+
+.answer-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input[type="number"] {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  width: 150px;
+  text-align: center;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Remove number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+button {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 12px 20px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background-color: #3D8369;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.result {
+  font-size: 18px;
+  font-weight: 500;
+  min-height: 27px;
+  text-align: center;
+}
+
+.result.success {
+  color: var(--success-color);
+}
+
+.result.error {
+  color: var(--error-color);
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #666;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.primary-btn {
+  background-color: var(--primary-color);
+  padding: 14px 25px;
+  font-size: 16px;
+}
+
+.primary-btn:hover:not(:disabled) {
+  background-color: #134048;
+}
+
+.secondary-btn {
+  background-color: var(--secondary-color);
+}
+
+.instructions {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+li {
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 20px;
+}
+
+li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--secondary-color);
+}
+
+footer {
+  text-align: center;
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 0.5s;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .problem {
+    font-size: 24px;
+  }
+  
+  .stats {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  button {
+    width: 100%;
+  }
+}

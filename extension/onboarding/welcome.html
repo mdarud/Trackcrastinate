@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Trackcrastinate</title>
+  <link rel="stylesheet" href="onboarding.css">
+</head>
+<body>
+  <div class="onboarding-container">
+    <header class="onboarding-header">
+      <div class="logo-container">
+        <img src="../icons/icon.svg" alt="Trackcrastinate Logo" class="logo">
+        <h1>Trackcrastinate</h1>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="step-indicators" id="step-indicators">
+          <!-- Step indicators will be added dynamically -->
+        </div>
+      </div>
+    </header>
+
+    <main class="onboarding-content">
+      <div class="step-container" id="step-container">
+        <!-- Step content will be loaded dynamically -->
+      </div>
+    </main>
+
+    <footer class="onboarding-footer">
+      <button class="btn btn-secondary" id="btn-back">Back</button>
+      <button class="btn btn-link" id="btn-skip">Skip</button>
+      <button class="btn btn-primary" id="btn-next">Next</button>
+    </footer>
+  </div>
+
+  <!-- Step Templates -->
+  <template id="step-welcome">
+    <div class="step-content">
+      <h2>Welcome to Trackcrastinate</h2>
+      <div class="welcome-illustration">
+        <img src="images/welcome.svg" alt="Welcome Illustration">
+      </div>
+      <p class="welcome-message">
+        Your journey to mindful browsing begins here. Trackcrastinate helps you track and manage your time spent on unproductive websites.
+      </p>
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <div class="feature-text">
+            <h3>Track Your Time</h3>
+            <p>Monitor how much time you spend on distracting websites</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">⏰</div>
+          <div class="feature-text">
+            <h3>Set Time Limits</h3>
+            <p>Define how much time you want to spend on these sites</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📱</div>
+          <div class="feature-text">
+            <h3>Stay Informed</h3>
+            <p>Get notifications when you're approaching your limits</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🦖</div>
+          <div class="feature-text">
+            <h3>Have Fun</h3>
+            <p>Play the Dino game when you reach your time limits</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="step-tracked-sites">
+    <div class="step-content">
+      <h2>Select Sites to Track</h2>
+      <p>Choose which websites you want to monitor. You can always change this later in the options page.</p>
+      
+      <div class="site-categories">
+        <div class="category-selector">
+          <button class="category-btn active" data-category="all">All</button>
+          <button class="category-btn" data-category="social">Social</button>
+          <button class="category-btn" data-category="entertainment">Entertainment</button>
+          <button class="category-btn" data-category="shopping">Shopping</button>
+          <button class="category-btn" data-category="news">News</button>
+        </div>
+      </div>
+      
+      <div class="site-list" id="site-list">
+        <!-- Sites will be loaded dynamically -->
+      </div>
+      
+      <div class="custom-site-form">
+        <h3>Add Custom Site</h3>
+        <div class="form-group">
+          <input type="text" id="custom-site-input" placeholder="e.g., example.com">
+          <select id="custom-site-category">
+            <option value="social">Social</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="shopping">Shopping</option>
+            <option value="news">News</option>
+            <option value="uncategorized">Other</option>
+          </select>
+          <button class="btn btn-secondary" id="btn-add-site">Add</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="step-time-limits">
+    <div class="step-content">
+      <h2>Set Time Limits</h2>
+      <p>Define how much time you want to spend on these sites each day.</p>
+      
+      <div class="time-limit-container">
+        <h3>Global Time Limit</h3>
+        <div class="time-limit-slider-container">
+          <input type="range" id="global-time-limit" min="15" max="240" step="15" value="60">
+          <div class="time-limit-value">
+            <span id="global-time-limit-value">60</span> minutes per day
+          </div>
+        </div>
+        
+        <div class="time-limit-presets">
+          <button class="preset-btn" data-value="30">30m</button>
+          <button class="preset-btn" data-value="60">1h</button>
+          <button class="preset-btn" data-value="120">2h</button>
+          <button class="preset-btn" data-value="180">3h</button>
+        </div>
+      </div>
+      
+      <div class="site-specific-limits">
+        <h3>Site-Specific Time Limits (Optional)</h3>
+        <p>You can set different time limits for specific sites.</p>
+        
+        <div class="site-limit-list" id="site-limit-list">
+          <!-- Site-specific limits will be added dynamically -->
+        </div>
+        
+        <div class="add-site-limit">
+          <select id="site-limit-select">
+            <option value="">Select a site...</option>
+            <!-- Options will be added dynamically -->
+          </select>
+          <input type="number" id="site-limit-value" min="5" max="240" step="5" value="30">
+          <span>min</span>
+          <button class="btn btn-secondary" id="btn-add-site-limit">Add</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="step-notifications">
+    <div class="step-content">
+      <h2>Configure Notifications</h2>
+      <p>Set up how you want to be reminded about your time limits.</p>
+      
+      <div class="notification-settings">
+        <div class="setting-group">
+          <h3>Notification Types</h3>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="browser-notifications" checked>
+              <span>Browser Notifications</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="in-page-banners" checked>
+              <span>In-Page Banners</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="popup-alerts" checked>
+              <span>Popup Alerts</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="setting-group">
+          <h3>Notification Thresholds</h3>
+          <p>Get notified when you reach these percentages of your time limit:</p>
+          <div class="checkbox-group thresholds">
+            <label class="checkbox-label">
+              <input type="checkbox" id="threshold-50" checked>
+              <span>50%</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="threshold-75" checked>
+              <span>75%</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="threshold-90" checked>
+              <span>90%</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="threshold-95" checked>
+              <span>95%</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="setting-group">
+          <h3>Sound Alerts</h3>
+          <div class="toggle-container">
+            <label class="toggle-switch">
+              <input type="checkbox" id="sound-alerts">
+              <span class="toggle-slider"></span>
+            </label>
+            <span>Play sound when notifications appear</span>
+          </div>
+          
+          <div class="volume-container" id="volume-container">
+            <span>Volume:</span>
+            <input type="range" id="sound-volume" min="0" max="100" step="10" value="50">
+            <span id="volume-value">50%</span>
+          </div>
+        </div>
+        
+        <div class="setting-group">
+          <h3>Notification Frequency</h3>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="frequency" id="frequency-low" value="low">
+              <span>Low (15 minutes)</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="frequency" id="frequency-medium" value="medium" checked>
+              <span>Medium (5 minutes)</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="frequency" id="frequency-high" value="high">
+              <span>High (2 minutes)</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="setting-group">
+          <h3>Snooze Options</h3>
+          <div class="toggle-container">
+            <label class="toggle-switch">
+              <input type="checkbox" id="snooze-enabled" checked>
+              <span class="toggle-slider"></span>
+            </label>
+            <span>Allow snoozing notifications</span>
+          </div>
+          
+          <div class="snooze-duration-container" id="snooze-duration-container">
+            <span>Snooze duration:</span>
+            <select id="snooze-duration">
+              <option value="1">1 minute</option>
+              <option value="5" selected>5 minutes</option>
+              <option value="10">10 minutes</option>
+              <option value="15">15 minutes</option>
+              <option value="30">30 minutes</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="step-dashboard">
+    <div class="step-content">
+      <h2>Explore Your Dashboard</h2>
+      <p>Learn how to use the dashboard to track your progress.</p>
+      
+      <div class="dashboard-preview">
+        <img src="images/dashboard-preview.svg" alt="Dashboard Preview">
+      </div>
+      
+      <div class="dashboard-features">
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <div class="feature-text">
+            <h3>Daily Stats</h3>
+            <p>See how much time you've spent on each site today</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🏆</div>
+          <div class="feature-text">
+            <h3>Top Sites</h3>
+            <p>Discover which sites consume most of your time</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📋</div>
+          <div class="feature-text">
+            <h3>Category Breakdown</h3>
+            <p>Analyze your usage by category</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">😄</div>
+          <div class="feature-text">
+            <h3>Roast Generator</h3>
+            <p>Get humorous insights about your browsing habits</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="dashboard-access">
+        <h3>Access Your Dashboard</h3>
+        <p>You can access your dashboard in several ways:</p>
+        <ul>
+          <li>Click on the Trackcrastinate icon in your browser toolbar, then click "Open Dashboard"</li>
+          <li>Right-click on the Trackcrastinate icon and select "Open Dashboard"</li>
+          <li>Open a new tab and navigate to <span class="dashboard-url" id="dashboard-url">http://localhost:3000</span></li>
+        </ul>
+        <button class="btn btn-secondary" id="btn-open-dashboard">Open Dashboard</button>
+      </div>
+    </div>
+  </template>
+
+  <template id="step-complete">
+    <div class="step-content">
+      <h2>All Set!</h2>
+      <div class="complete-illustration">
+        <img src="images/complete.svg" alt="Setup Complete">
+      </div>
+      <p class="complete-message">
+        You're ready to start using Trackcrastinate. Your journey to mindful browsing begins now!
+      </p>
+      <div class="next-steps">
+        <h3>Next Steps</h3>
+        <ul>
+          <li>Browse the web as usual</li>
+          <li>Check your stats in the popup or dashboard</li>
+          <li>Adjust your settings in the options page if needed</li>
+          <li>Enjoy a more mindful browsing experience!</li>
+        </ul>
+      </div>
+      <div class="action-buttons">
+        <button class="btn btn-secondary" id="btn-options">Open Options</button>
+        <button class="btn btn-primary" id="btn-finish">Finish</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="../storage.js"></script>
+  <script src="../onboarding-manager.js"></script>
+  <script src="onboarding.js"></script>
+</body>
+</html>

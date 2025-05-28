@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Links - Trackcrastinate</title>
+  <link rel="stylesheet" href="focus-links.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Focus Links</h1>
+      <p class="subtitle">Department of Productive Browsing</p>
+    </header>
+
+    <div class="links-container">
+      <div class="links-header">
+        <h2>Your Productive Links</h2>
+        <p>Please redirect your attention to these approved resources:</p>
+      </div>
+
+      <div class="links-list" id="links-list">
+        <!-- Links will be populated by JavaScript -->
+        <div class="empty-state" id="empty-state">
+          <p>No focus links have been added yet.</p>
+          <p>Add links in the form below.</p>
+        </div>
+      </div>
+
+      <div class="links-form">
+        <h3>Add New Focus Link</h3>
+        <div class="form-group">
+          <input type="text" id="link-title" placeholder="Link title...">
+          <input type="url" id="link-url" placeholder="https://...">
+          <button id="add-link-btn">Add Link</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="continue-btn" class="primary-btn">Continue Browsing</button>
+      <div class="timer" id="timer">00:00</div>
+    </div>
+
+    <footer>
+      <p>Productive browsing leads to optimal refinement metrics.</p>
+    </footer>
+  </div>
+
+  <script src="focus-links.js"></script>
+</body>
+</html>

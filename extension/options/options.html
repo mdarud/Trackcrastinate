@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trackcrastinate Options</title>
+  <link rel="stylesheet" href="options.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Import Supabase modules -->
+  <script type="module" src="../supabase-import-shim.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-container">
+        <div class="logo"></div>
+        <h1>Trackcrastinate</h1>
+      </div>
+      <div class="subtitle">Configuration Interface</div>
+    </header>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="general">General</button>
+      <button class="tab-btn" data-tab="sites">Tracked Sites</button>
+      <button class="tab-btn" data-tab="limits">Time Limits</button>
+      <button class="tab-btn" data-tab="appearance">Appearance</button>
+      <button class="tab-btn" data-tab="sync">Sync & Data</button>
+    </div>
+
+    <div class="tab-content">
+      <!-- General Settings -->
+      <div class="tab-pane active" id="general">
+        <h2>General Settings</h2>
+        
+        <div class="setting-group">
+          <div class="setting-item">
+            <label class="toggle-label">
+              Enable Tracking
+              <div class="toggle-container">
+                <label class="toggle">
+                  <input type="checkbox" id="enable-tracking" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </label>
+            <p class="setting-description">Track time spent on unproductive sites</p>
+          </div>
+
+          <div class="setting-item">
+            <label class="toggle-label">
+              Show Notifications
+              <div class="toggle-container">
+                <label class="toggle">
+                  <input type="checkbox" id="show-notifications" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </label>
+            <p class="setting-description">Display notifications for time limits and insights</p>
+          </div>
+
+          <div class="setting-item">
+            <label class="toggle-label">
+              Start at Launch
+              <div class="toggle-container">
+                <label class="toggle">
+                  <input type="checkbox" id="start-at-launch" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </label>
+            <p class="setting-description">Begin tracking automatically when browser starts</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tracked Sites -->
+      <div class="tab-pane" id="sites">
+        <h2>Tracked Sites</h2>
+        
+        <div class="site-controls">
+          <input type="text" id="new-site" placeholder="Enter domain (e.g., facebook.com)">
+          <select id="site-category">
+            <option value="social">Social</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="shopping">Shopping</option>
+            <option value="news">News</option>
+            <option value="sports">Sports</option>
+            <option value="other">Other</option>
+          </select>
+          <button id="add-site" class="primary-btn">Add Site</button>
+        </div>
+
+        <div class="site-list-container">
+          <h3>Currently Tracked Sites</h3>
+          <ul id="site-list" class="site-list">
+            <!-- Sites will be populated by JavaScript -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- Time Limits -->
+      <div class="tab-pane" id="limits">
+        <h2>Time Limits</h2>
+        
+        <div class="setting-group">
+          <div class="setting-item">
+            <label for="daily-limit">Daily Time Limit (minutes)</label>
+            <input type="number" id="daily-limit" min="1" max="1440" value="60">
+            <p class="setting-description">Maximum time allowed on unproductive sites per day</p>
+          </div>
+
+          <div class="setting-item">
+            <label for="activity-type">Activity When Limit Reached</label>
+            <select id="activity-type">
+              <option value="dino-game">Dino Game</option>
+              <option value="task-reminder">Task Reminder</option>
+              <option value="focus-links">Focus Links</option>
+              <option value="word-game">Word Game</option>
+              <option value="math-challenge">Math Challenge</option>
+            </select>
+            <p class="setting-description">Choose what activity to show when time limit is reached</p>
+          </div>
+
+          <div class="setting-item" id="math-difficulty-container" style="display: none;">
+            <label for="math-difficulty">Math Difficulty</label>
+            <select id="math-difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+            <p class="setting-description">Choose difficulty level for math challenges</p>
+          </div>
+
+          <div class="setting-item">
+            <label for="warning-threshold">Warning Threshold (%)</label>
+            <input type="number" id="warning-threshold" min="1" max="100" value="80">
+            <p class="setting-description">Show warning when this percentage of limit is reached</p>
+          </div>
+
+          <div class="setting-item">
+            <label for="notification-frequency">Notification Frequency</label>
+            <select id="notification-frequency">
+              <option value="low">Low (15 minutes)</option>
+              <option value="medium" selected>Medium (5 minutes)</option>
+              <option value="high">High (2 minutes)</option>
+            </select>
+            <p class="setting-description">How often to show notifications when limits are reached</p>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h3>Site-Specific Time Limits</h3>
+          <p>Set different time limits for specific websites.</p>
+          
+          <div class="site-limits-container">
+            <div id="site-limits-list">
+              <!-- Site limits will be added here dynamically -->
+            </div>
+            
+            <div class="add-site-limit">
+              <h4>Add New Site Limit</h4>
+              <div class="form-group">
+                <label for="site-domain">Domain:</label>
+                <input type="text" id="site-domain" placeholder="e.g., facebook.com">
+              </div>
+              <div class="form-group">
+                <label for="site-limit">Time Limit (minutes):</label>
+                <input type="number" id="site-limit" min="1" max="1440" value="30">
+              </div>
+              <button id="add-site-limit-btn" class="primary-btn">Add Site Limit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Appearance -->
+      <div class="tab-pane" id="appearance">
+        <h2>Appearance</h2>
+        
+        <div class="setting-group">
+          <div class="setting-item">
+            <label for="roast-level">Roast Level</label>
+            <select id="roast-level">
+              <option value="mild">Mild</option>
+              <option value="medium" selected>Medium</option>
+              <option value="spicy">Spicy</option>
+            </select>
+            <p class="setting-description">How sarcastic should the roasts be?</p>
+          </div>
+
+          <div class="setting-item">
+            <label class="toggle-label">
+              Dark Mode
+              <div class="toggle-container">
+                <label class="toggle">
+                  <input type="checkbox" id="dark-mode">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </label>
+            <p class="setting-description">Use dark theme (coming soon)</p>
+          </div>
+
+          <div class="setting-item">
+            <label for="font-size">Font Size</label>
+            <select id="font-size">
+              <option value="small">Small</option>
+              <option value="medium" selected>Medium</option>
+              <option value="large">Large</option>
+            </select>
+            <p class="setting-description">Adjust text size for better readability</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sync & Data -->
+      <div class="tab-pane" id="sync">
+        <h2>Sync & Data</h2>
+        
+        <div class="setting-group">
+          <div class="setting-item">
+            <label class="toggle-label">
+              Sync Across Devices
+              <div class="toggle-container">
+                <label class="toggle">
+                  <input type="checkbox" id="enable-sync" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </label>
+            <p class="setting-description">Synchronize data between your devices</p>
+          </div>
+
+          <div class="setting-item">
+            <label class="toggle-label">
+              Offline Mode
+              <div class="toggle-container">
+                <label class="toggle">
+                  <input type="checkbox" id="offline-mode">
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </label>
+            <p class="setting-description">Store data locally only (no account required)</p>
+          </div>
+
+          <div class="setting-item">
+            <label for="dashboard-url">Dashboard URL</label>
+            <input type="text" id="dashboard-url" placeholder="http://localhost:3000">
+            <p class="setting-description">URL for the Trackcrastinate dashboard</p>
+          </div>
+
+          <div class="data-controls">
+            <button id="export-data" class="secondary-btn">Export Data</button>
+            <button id="clear-data" class="danger-btn">Clear Data</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="save-btn" class="primary-btn">Save Changes</button>
+      <button id="reset-btn" class="secondary-btn">Reset to Defaults</button>
+    </div>
+
+    <footer>
+      <div class="user-info-container">
+        <div class="user-info" id="user-info">
+          <!-- User info will be populated by JavaScript -->
+        </div>
+        <button id="reset-password-btn" class="text-btn" style="display: none;">Reset Password</button>
+      </div>
+      <div class="version">Trackcrastinate v1.0.0</div>
+    </footer>
+  </div>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>

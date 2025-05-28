@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trackcrastinate</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Import Supabase modules -->
+  <script type="module" src="../supabase-import-shim.js"></script>
+  <!-- Ensure Supabase is loaded before popup.js -->
+</head>
+<body>
+  <div class="container">
+    <!-- Auth Section (shown when not logged in) -->
+    <div id="auth-section" class="auth-section" style="display: none;">
+      <div class="auth-header">
+        <div class="logo-container">
+          <div class="logo"></div>
+          <h1>Trackcrastinate</h1>
+        </div>
+        <h2>Identity Verification Required</h2>
+        <p>Please sign in to access your productivity data and dashboard</p>
+      </div>
+      
+      <div class="divider">
+        <span class="divider-text">AUTHENTICATION OPTIONS</span>
+      </div>
+      
+      <div class="auth-buttons">
+        <button id="sign-in-email-btn" class="primary-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+          </svg>
+          Sign in with Email
+        </button>
+        <button id="sign-in-google-btn" class="secondary-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"/>
+          </svg>
+          Sign in with Google
+        </button>
+      </div>
+      
+      <div id="email-auth-form" class="auth-form" style="display: none;">
+        <input type="email" id="email-input" placeholder="Email" required>
+        <input type="password" id="password-input" placeholder="Password" required>
+        <div class="auth-form-buttons">
+          <button id="sign-in-btn" class="primary-btn">Sign In</button>
+          <button id="create-account-btn" class="secondary-btn">Create Account</button>
+        </div>
+        <button id="forgot-password-btn" class="text-btn">Forgot password?</button>
+        <button id="back-to-options-btn" class="text-btn">Back to Options</button>
+      </div>
+      
+      <div class="divider">
+        <span class="divider-text">OR</span>
+      </div>
+      
+      <div class="offline-option">
+        <label class="checkbox-container">
+          <input type="checkbox" id="offline-mode-toggle">
+          <span class="checkmark"></span>
+          Continue in offline mode (data won't sync)
+        </label>
+      </div>
+      
+      <p class="auth-note">Sign in to access your dashboard and sync data across devices</p>
+    </div>
+    
+    <!-- Main Content (shown when logged in or in offline mode) -->
+    <div id="main-content">
+      <header>
+        <div class="logo-container">
+          <div class="logo"></div>
+          <h1>Trackcrastinate</h1>
+        </div>
+        <div class="toggle-container">
+          <span>Tracking</span>
+          <label class="toggle">
+            <input type="checkbox" id="tracking-toggle" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </header>
+
+      <div class="divider">
+        <span class="divider-text">USAGE METRICS</span>
+      </div>
+
+      <div class="stats-container">
+        <div class="today-stats">
+          <h2>Today's Metrics</h2>
+          <div class="time-display">
+            <div class="time-with-toggle">
+              <span id="total-time" class="mono-display">0m</span>
+              <button id="time-detail-toggle" class="detail-toggle" title="Toggle detailed time view">
+                Details
+              </button>
+            </div>
+            <span class="label">Total Unproductive Time</span>
+          </div>
+          
+          <div class="limit-progress">
+            <div class="progress-label">
+              <span>Daily Quota</span>
+              <span id="limit-display" class="mono-display">0/60 min</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress" id="limit-progress"></div>
+            </div>
+          </div>
+          
+          <div class="reset-container">
+            <button id="reset-tracking-btn" class="secondary-btn">
+              <span class="reset-icon">↺</span> Reset Timer
+            </button>
+            <span id="reset-count" class="reset-count mono-display">0 resets today</span>
+          </div>
+        </div>
+
+        <div class="top-sites">
+          <h3>Top Distractions</h3>
+          <ul id="top-sites-list">
+            <li class="placeholder">No data refinement yet</li>
+          </ul>
+        </div>
+
+        <div class="category-breakdown">
+          <h3>Category Analysis</h3>
+          <ul id="category-list">
+            <li class="placeholder">No categories to analyze</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="roast-container">
+        <p id="roast-message">Track your digital habits for better productivity.</p>
+      </div>
+
+      <footer>
+        <button id="dashboard-btn" class="primary-btn">Open Dashboard</button>
+        <button id="options-btn" class="secondary-btn">Settings</button>
+        <button id="sign-out-btn" class="text-btn" style="display: none;">Sign Out</button>
+      </footer>
+    </div>
+    
+    <!-- User Info Bar (shown when logged in) -->
+    <div id="user-info-bar" class="user-info-bar" style="display: none;">
+      <span id="user-email"></span>
+      <span id="sync-status" class="sync-status">Synced</span>
+    </div>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

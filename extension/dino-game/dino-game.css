@@ -1,0 +1,293 @@
+/* Trackcrastinate - Dino Game Styles with Severance-inspired design */
+
+:root {
+  /* Severance-inspired color palette */
+  --primary-color: #4A9D7C; /* Lumon green */
+  --primary-dark: #1A535C; /* Darker teal */
+  --primary-light: #7DCFB6; /* Lighter teal */
+  --secondary-color: #607D8B; /* Muted blue */
+  --accent-color: #E63946; /* Bright red for warnings/highlights */
+  --highlight: #FFD166; /* Egg yellow for achievements */
+  
+  /* Neutrals */
+  --background: #FFFFFF;
+  --surface: #F8F9FA;
+  --surface-dark: #E9ECEF;
+  --on-primary: #FFFFFF;
+  --on-secondary: #FFFFFF;
+  --on-background: #343A40;
+  --on-surface: #343A40;
+  --on-error: #FFFFFF;
+  
+  /* UI properties */
+  --border-radius: 4px;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background-color: var(--background);
+  color: var(--on-background);
+  line-height: 1.5;
+  padding: 20px;
+}
+
+.game-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid var(--surface-dark);
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: var(--primary-color);
+  color: var(--on-primary);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  background-color: var(--on-primary);
+  border-radius: 50%;
+  position: relative;
+}
+
+.logo h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.protocol-badge {
+  background-color: var(--primary-dark);
+  color: var(--on-primary);
+  padding: 4px 12px;
+  border-radius: var(--border-radius);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+/* Game Message */
+.game-message {
+  padding: 24px;
+  text-align: center;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--surface-dark);
+}
+
+.game-message h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: var(--primary-dark);
+}
+
+.game-message p {
+  color: var(--secondary-color);
+  max-width: 600px;
+  margin: 0 auto 24px;
+}
+
+/* Severance-inspired divider */
+.divider {
+  position: relative;
+  height: 24px;
+  margin: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--surface-dark);
+}
+
+.divider-text {
+  background-color: var(--surface);
+  padding: 0 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--secondary-color);
+  position: relative;
+  letter-spacing: 1px;
+}
+
+/* Game Canvas */
+.game-canvas-container {
+  padding: 24px;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#game-canvas {
+  border: 1px solid var(--surface-dark);
+  background-color: var(--surface);
+  max-width: 100%;
+  height: auto;
+}
+
+.game-instructions {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--secondary-color);
+}
+
+.key {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: var(--surface-dark);
+  border-radius: var(--border-radius);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  margin: 0 4px;
+}
+
+/* Game Stats */
+.game-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  padding: 16px 24px;
+  background-color: var(--surface);
+  border-top: 1px solid var(--surface-dark);
+  border-bottom: 1px solid var(--surface-dark);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--secondary-color);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+/* Game Controls */
+.game-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  background-color: var(--background);
+}
+
+.control-btn, .primary-btn {
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  letter-spacing: 1px;
+}
+
+.control-btn {
+  background-color: var(--surface);
+  color: var(--secondary-color);
+  border: 1px solid var(--surface-dark);
+}
+
+.control-btn:hover {
+  background-color: var(--surface-dark);
+}
+
+.primary-btn {
+  background-color: var(--primary-color);
+  color: var(--on-primary);
+}
+
+.primary-btn:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+}
+
+.primary-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Footer */
+footer {
+  padding: 16px 24px;
+  text-align: center;
+  background-color: var(--surface);
+  border-top: 1px solid var(--surface-dark);
+  color: var(--secondary-color);
+  font-size: 14px;
+}
+
+.copyright {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--secondary-color);
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 0;
+  }
+  
+  .game-container {
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+  
+  .game-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.game-container {
+  animation: fadeIn 0.5s ease-out;
+}

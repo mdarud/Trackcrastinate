@@ -1,0 +1,31 @@
+{
+  "name": "trackcrastinate-extension",
+  "version": "1.0.0",
+  "description": "Chrome extension for Trackcrastinate - Track your procrastination with style",
+  "private": true,
+  "scripts": {
+    "build": "echo \"No build step required for extension\" && exit 0",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "zip": "node scripts/zip.js"
+  },
+  "keywords": [
+    "chrome-extension",
+    "productivity",
+    "time-tracking",
+    "severance",
+    "procrastination"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "date-fns": "^2.30.0",
+    "firebase": "^9.23.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "adm-zip": "^0.5.10",
+    "eslint": "^8.43.0",
+    "webextension-polyfill": "^0.10.0"
+  }
+}

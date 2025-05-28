@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Game - Trackcrastinate</title>
+  <link rel="stylesheet" href="word-game.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Word Game</h1>
+      <p class="subtitle">Department of Cognitive Refinement</p>
+    </header>
+
+    <div class="game-container">
+      <div class="game-header">
+        <h2>Guess the 5-Letter Word</h2>
+        <p>You have 6 attempts to guess the word.</p>
+      </div>
+
+      <div class="game-board" id="game-board">
+        <!-- Game board will be populated by JavaScript -->
+      </div>
+
+      <div class="keyboard" id="keyboard">
+        <!-- Keyboard will be populated by JavaScript -->
+      </div>
+
+      <div class="game-message" id="game-message">
+        <!-- Game messages will be displayed here -->
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="continue-btn" class="primary-btn" disabled>Continue Browsing</button>
+      <button id="new-game-btn" class="secondary-btn">New Game</button>
+    </div>
+
+    <div class="instructions">
+      <h3>How to Play</h3>
+      <ul>
+        <li>Guess the WORD in 6 tries.</li>
+        <li>Each guess must be a valid 5-letter word.</li>
+        <li>After each guess, the color of the tiles will change to show how close your guess was to the word.</li>
+        <li><span class="example correct">Green</span> means the letter is in the word and in the correct spot.</li>
+        <li><span class="example present">Yellow</span> means the letter is in the word but in the wrong spot.</li>
+        <li><span class="example absent">Gray</span> means the letter is not in the word.</li>
+      </ul>
+    </div>
+
+    <footer>
+      <p>Cognitive exercises improve data refinement efficiency.</p>
+    </footer>
+  </div>
+
+  <script src="word-game.js"></script>
+</body>
+</html>

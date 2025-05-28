@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Reminder - Trackcrastinate</title>
+  <link rel="stylesheet" href="task-reminder.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Task Reminder</h1>
+      <p class="subtitle">Department of Productivity Enhancement</p>
+    </header>
+
+    <div class="task-container">
+      <div class="task-header">
+        <h2>Your Assigned Tasks</h2>
+        <p>Please review and acknowledge the following tasks:</p>
+      </div>
+
+      <div class="task-list" id="task-list">
+        <!-- Tasks will be populated by JavaScript -->
+        <div class="empty-state" id="empty-state">
+          <p>No tasks have been assigned yet.</p>
+          <p>Add tasks in the form below.</p>
+        </div>
+      </div>
+
+      <div class="task-form">
+        <h3>Add New Task</h3>
+        <div class="form-group">
+          <input type="text" id="new-task" placeholder="Enter a new task...">
+          <button id="add-task-btn">Add Task</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="continue-btn" class="primary-btn">Continue Browsing</button>
+      <div class="timer" id="timer">00:00</div>
+    </div>
+
+    <footer>
+      <p>Remember: Productive employees are happy employees.</p>
+    </footer>
+  </div>
+
+  <script src="task-reminder.js"></script>
+</body>
+</html>

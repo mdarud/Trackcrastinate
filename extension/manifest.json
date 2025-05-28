@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "Trackcrastinate",
+  "version": "1.0.0",
+  "description": "Track your procrastination with style. Reclaim your time with a sense of humor.",
+  "permissions": [
+    "tabs",
+    "storage",
+    "idle",
+    "alarms",
+    "notifications"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-scripts/limit-enforcer.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "dino-game/dino-game.html",
+        "dino-game/dino-game.js",
+        "dino-game/dino-sprites.js",
+        "dino-game/dino-audio.js",
+        "dino-game/dino-game.css",
+        "dino-game/assets/*",
+        "onboarding/welcome.html",
+        "onboarding/onboarding.js",
+        "onboarding/onboarding.css",
+        "onboarding/images/*",
+        "notification-manager.js",
+        "onboarding-manager.js",
+        "supabase.js",
+        "storage.js",
+        "domain-utils.js",
+        "tracking.js",
+        "tracking-loader.js",
+        "supabase-test.js",
+        "password-reset.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
+}

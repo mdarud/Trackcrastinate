@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trackcrastinate - Severance Protocol</title>
+  <link rel="stylesheet" href="dino-game.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="game-container">
+    <header>
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <h1>Trackcrastinate</h1>
+      </div>
+      <div class="protocol-badge">SEVERANCE PROTOCOL</div>
+    </header>
+
+    <div class="game-message">
+      <h2>Macrodata Refinement Exercise</h2>
+      <p>You have reached your daily deviation quota. The Board requires you to complete this refinement exercise before continuing.</p>
+      <div class="divider">
+        <span class="divider-text">PLEASE ENJOY EACH DEVIATION EQUALLY</span>
+      </div>
+    </div>
+
+    <div class="game-canvas-container">
+      <canvas id="game-canvas" width="600" height="150"></canvas>
+      <div class="game-instructions">
+        <p>Press <span class="key">SPACE</span> to start and jump</p>
+        <p>Press <span class="key">DOWN</span> to duck</p>
+      </div>
+    </div>
+
+    <div class="game-stats">
+      <div class="stat">
+        <span class="stat-label">SCORE</span>
+        <span id="score" class="stat-value">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">HIGH SCORE</span>
+        <span id="high-score" class="stat-value">0</span>
+      </div>
+    </div>
+
+    <div class="game-controls">
+      <button id="restart-btn" class="control-btn">RESTART</button>
+      <button id="continue-btn" class="primary-btn" disabled>CONTINUE BROWSING</button>
+    </div>
+
+    <footer>
+      <p>Complete the exercise to unlock continued browsing privileges.</p>
+      <p class="copyright">Trackcrastinate &copy; 2025 | Your work-life severance is pending approval</p>
+    </footer>
+  </div>
+
+  <script src="dino-sprites.js"></script>
+  <script src="dino-audio.js"></script>
+  <script src="dino-game.js"></script>
+</body>
+</html>
