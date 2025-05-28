@@ -1,0 +1,427 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Severance-inspired color palette */
+  --color-primary: #4A9D7C;
+  --color-primary-dark: #1A535C;
+  --color-secondary: #607D8B;
+  --color-accent: #E63946;
+  --color-warning: #F77F00;
+  --color-success: #4A9D7C;
+  --color-info: #607D8B;
+  
+  /* Neutral colors */
+  --color-background: #FAFAFA;
+  --color-surface: #FFFFFF;
+  --color-surface-secondary: #F8F9FA;
+  --color-border: #E9ECEF;
+  --color-border-light: #F1F3F4;
+  
+  /* Text colors */
+  --color-text-primary: #1A535C;
+  --color-text-secondary: #607D8B;
+  --color-text-muted: #9E9E9E;
+  --color-text-inverse: #FFFFFF;
+  
+  /* Chart colors */
+  --color-chart-social: #E63946;
+  --color-chart-entertainment: #F77F00;
+  --color-chart-shopping: #FCBF49;
+  --color-chart-news: #EAE2B7;
+  --color-chart-sports: #4A9D7C;
+  --color-chart-work: #1A535C;
+  --color-chart-education: #607D8B;
+  --color-chart-other: #9E9E9E;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.font-mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Custom components */
+.card {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+}
+
+.card-header {
+  @apply mb-4 pb-4 border-b border-gray-200;
+}
+
+.card-title {
+  @apply text-xl font-semibold text-gray-900 font-mono;
+}
+
+.card-description {
+  @apply text-sm text-gray-600 mt-1;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.btn-primary {
+  @apply bg-[#4A9D7C] text-white hover:bg-[#1A535C] h-10 py-2 px-4;
+}
+
+.btn-secondary {
+  @apply bg-[#F8F9FA] text-[#607D8B] border border-[#E9ECEF] hover:bg-[#E9ECEF] h-10 py-2 px-4;
+}
+
+.btn-ghost {
+  @apply hover:bg-[#F8F9FA] hover:text-[#1A535C] h-10 py-2 px-4;
+}
+
+.btn-link {
+  @apply underline-offset-4 hover:underline text-[#4A9D7C] h-auto p-0;
+}
+
+.input {
+  @apply flex h-10 w-full rounded-md border border-[#E9ECEF] bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#9E9E9E] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A9D7C] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.label {
+  @apply text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#607D8B];
+}
+
+/* Severance-inspired dividers */
+.divider {
+  @apply flex items-center my-8;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  @apply flex-1 h-px bg-[#E9ECEF];
+}
+
+.divider-text {
+  @apply px-4 text-xs font-mono text-[#607D8B] uppercase tracking-wider;
+}
+
+/* Progress bars */
+.progress {
+  @apply relative h-2 w-full overflow-hidden rounded-full bg-[#E9ECEF];
+}
+
+.progress-indicator {
+  @apply h-full w-full flex-1 transition-all;
+}
+
+/* Loading states */
+.loading-spinner {
+  @apply inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite];
+}
+
+/* Chart containers */
+.chart-container {
+  @apply relative w-full h-64;
+}
+
+.chart-legend {
+  @apply flex flex-wrap gap-4 mt-4 text-sm;
+}
+
+.chart-legend-item {
+  @apply flex items-center gap-2;
+}
+
+.chart-legend-color {
+  @apply w-3 h-3 rounded-full;
+}
+
+/* Wellness metrics */
+.wellness-metric {
+  @apply p-4 bg-[#F8F9FA] rounded-md border border-[#E9ECEF];
+}
+
+.wellness-metric-title {
+  @apply font-mono text-sm text-[#607D8B] uppercase tracking-wider;
+}
+
+.wellness-metric-value {
+  @apply text-2xl font-bold mt-1 mb-2;
+}
+
+.wellness-metric-description {
+  @apply text-sm text-[#607D8B];
+}
+
+/* Productivity score colors */
+.productivity-score {
+  @apply text-[#4A9D7C];
+}
+
+.focus-score {
+  @apply text-[#607D8B];
+}
+
+.deviation-score {
+  @apply text-[#E63946];
+}
+
+/* Progress bar colors */
+.progress-productivity {
+  @apply bg-[#4A9D7C];
+}
+
+.progress-focus {
+  @apply bg-[#607D8B];
+}
+
+.progress-deviation {
+  @apply bg-[#E63946];
+}
+
+/* Roast message styling */
+.roast-message {
+  @apply bg-gradient-to-r from-[#F8F9FA] to-[#E9ECEF] border border-[#E9ECEF] rounded-lg p-6 text-center;
+}
+
+.roast-message-text {
+  @apply text-lg text-[#1A535C] font-medium leading-relaxed;
+}
+
+/* Top sites styling */
+.top-site-item {
+  @apply flex items-center justify-between p-3 bg-[#F8F9FA] rounded-md border border-[#E9ECEF] hover:bg-[#E9ECEF] transition-colors;
+}
+
+.top-site-domain {
+  @apply font-medium text-[#1A535C];
+}
+
+.top-site-time {
+  @apply text-sm text-[#607D8B] font-mono;
+}
+
+.top-site-category {
+  @apply text-xs px-2 py-1 rounded-full text-white font-mono uppercase tracking-wider;
+}
+
+/* Category colors for badges */
+.category-social {
+  @apply bg-[#E63946];
+}
+
+.category-entertainment {
+  @apply bg-[#F77F00];
+}
+
+.category-shopping {
+  @apply bg-[#FCBF49] text-[#1A535C];
+}
+
+.category-news {
+  @apply bg-[#EAE2B7] text-[#1A535C];
+}
+
+.category-sports {
+  @apply bg-[#4A9D7C];
+}
+
+.category-work {
+  @apply bg-[#1A535C];
+}
+
+.category-education {
+  @apply bg-[#607D8B];
+}
+
+.category-other {
+  @apply bg-[#9E9E9E];
+}
+
+/* Authentication forms */
+.auth-container {
+  @apply min-h-screen flex items-center justify-center bg-[#FAFAFA] py-12 px-4 sm:px-6 lg:px-8;
+}
+
+.auth-card {
+  @apply max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-sm border border-[#E9ECEF];
+}
+
+.auth-header {
+  @apply text-center;
+}
+
+.auth-title {
+  @apply text-3xl font-bold text-[#1A535C] font-mono;
+}
+
+.auth-subtitle {
+  @apply mt-2 text-sm text-[#607D8B];
+}
+
+.auth-form {
+  @apply mt-8 space-y-6;
+}
+
+.auth-input-group {
+  @apply space-y-1;
+}
+
+.auth-error {
+  @apply text-sm text-[#E63946] mt-1;
+}
+
+.auth-link {
+  @apply text-[#4A9D7C] hover:text-[#1A535C] font-medium;
+}
+
+/* Dashboard layout */
+.dashboard-container {
+  @apply min-h-screen bg-[#FAFAFA];
+}
+
+.dashboard-header {
+  @apply bg-white border-b border-[#E9ECEF] px-6 py-4;
+}
+
+.dashboard-title {
+  @apply text-2xl font-bold text-[#1A535C] font-mono;
+}
+
+.dashboard-subtitle {
+  @apply text-[#607D8B] mt-1;
+}
+
+.dashboard-content {
+  @apply p-6;
+}
+
+.dashboard-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .dashboard-content {
+    @apply p-4;
+  }
+  
+  .card {
+    @apply p-4;
+  }
+  
+  .wellness-metric-value {
+    @apply text-xl;
+  }
+  
+  .roast-message-text {
+    @apply text-base;
+  }
+}
+
+/* Dark mode support (future enhancement) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #1A1A1A;
+    --color-surface: #2D2D2D;
+    --color-surface-secondary: #3A3A3A;
+    --color-border: #4A4A4A;
+    --color-border-light: #3A3A3A;
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #B0B0B0;
+    --color-text-muted: #808080;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Focus styles for accessibility */
+.focus-visible {
+  @apply outline-none ring-2 ring-[#4A9D7C] ring-offset-2;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-break {
+    page-break-before: always;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .card {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+}
